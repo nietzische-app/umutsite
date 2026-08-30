@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, Play } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import { portfolioFilters, projects, site } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectCover } from "@/components/ui/ProjectCover";
@@ -85,7 +85,7 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="card-surface group relative overflow-hidden rounded-2xl"
+                className="card-surface group relative overflow-hidden rounded-2xl transition-transform duration-500 hover:-translate-y-1.5"
               >
                 {/* Kapak */}
                 <div className="bg-surface relative aspect-4/5 overflow-hidden">
@@ -93,27 +93,18 @@ export function Portfolio() {
 
                   {/* Okunabilirlik için alt gradyan */}
                   <div
-                    className="from-ink/95 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
+                    className="from-ink/95 pointer-events-none absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
                     aria-hidden="true"
                   />
 
                   {/* Kategori rozeti */}
-                  <span className="glass text-bone absolute top-4 left-4 rounded-full px-3 py-1 text-[0.6rem] tracking-[0.18em] uppercase">
+                  <span className="glass text-bone pointer-events-none absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-[0.6rem] tracking-[0.18em] uppercase">
                     {portfolioFilters.find((f) => f.id === project.category)?.label}
                   </span>
 
-                  {/* Video kapaklarda oynatma göstergesi */}
-                  {project.media?.type === "video" && (
-                    <span
-                      className="glass text-sand absolute top-4 right-4 inline-flex h-7 w-7 items-center justify-center rounded-full transition-opacity duration-300 group-hover:opacity-0"
-                      aria-hidden="true"
-                    >
-                      <Play size={11} className="ml-0.5 fill-current" />
-                    </span>
-                  )}
 
                   {/* Hover'da açılan detay katmanı */}
-                  <div className="bg-ink/88 absolute inset-0 flex translate-y-3 flex-col justify-end p-6 opacity-0 backdrop-blur-[3px] transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
+                  <div className="bg-ink/80 pointer-events-none absolute inset-0 flex translate-y-3 flex-col justify-end p-6 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
                     <p className="eyebrow">{project.client}</p>
                     <h3 className="font-display text-bone mt-2 text-lg leading-snug font-semibold">
                       {project.title}

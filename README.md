@@ -79,6 +79,13 @@ sunucu tarafı özellik (API route, ISR, middleware) eklenirse hem
   ([`components/ui/HeroVideoBackdrop.tsx`](components/ui/HeroVideoBackdrop.tsx)).
   `lib/content.ts` → `hero.backgroundVideo` ile değiştirilir; boş bırakılırsa
   yalnızca Aurora kalır.
+- **Hareket.** Hizmet ikonlarının her biri kendi işini anlatan bir hover
+  hareketi alır (deklanşör kırpar, fırça salınır, grafik yukarı tırmanır);
+  boştayken kaydırmalı gecikmelerle hafifçe süzülürler. Kartlar hover'da
+  yükselir ve üzerlerinden bir ışık huzmesi geçer, birincil butonlarda da
+  aynı huzme vardır. Sayfanın üstünde şampanya renkli bir kaydırma
+  göstergesi ilerler. Tüm bu hareketler `prefers-reduced-motion` ayarına
+  uyar ve tamamen durur.
 - **Açık bölüm.** "Süreç" bölümü bilinçli olarak `#F2F2F2` zemindedir. Sayfa
   boyunca süren koyu ritmi kırar; kimlik kitinde de koyu ve açık kompozisyonlar
   birlikte kullanılıyor. Sabit başlık bu yüzden yeterince opaktır (`header-glass`),

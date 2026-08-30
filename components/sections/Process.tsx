@@ -57,10 +57,13 @@ export function Process() {
             aria-hidden="true"
           />
 
-          {processSteps.map((step) => (
+          {processSteps.map((step, index) => (
             <StaggerItem key={step.step}>
               <div className="group relative">
-                <span className="bg-ink font-display text-sand relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-transform duration-400 group-hover:-translate-y-1">
+                <span
+                  className="bg-ink font-display text-sand animate-float relative z-10 inline-flex h-12 w-12 items-center justify-center rounded-full text-sm font-semibold shadow-[0_10px_30px_-12px_rgba(0,0,0,0.6)] transition-shadow duration-400 group-hover:shadow-[0_16px_36px_-12px_rgba(220,197,161,0.7)]"
+                  style={{ animationDelay: `${index * 0.5}s` }}
+                >
                   {step.step}
                 </span>
                 <h3 className="text-on-light mt-6 text-base font-semibold">

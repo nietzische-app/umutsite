@@ -1,3 +1,4 @@
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { Header } from "@/components/sections/Header";
 import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
@@ -14,6 +15,7 @@ import { WhatsAppButton } from "@/components/sections/WhatsAppButton";
 export default function HomePage() {
   return (
     <>
+      <ScrollProgress />
       <Header />
       <main>
         <Hero />

@@ -21,6 +21,20 @@ const icons: Record<Service["icon"], LucideIcon> = {
   camera: Camera,
 };
 
+/**
+ * Her ikon kendi hizmetini anlatan bir hareket alır: deklanşör kırpar,
+ * fırça salınır, grafik yukarı tırmanır. Hareket yalnızca kartın üzerine
+ * gelindiğinde başlar; boştayken ikonlar sadece hafifçe süzülür.
+ */
+const iconMotion: Record<Service["icon"], string> = {
+  share: "group-hover:animate-icon-orbit",
+  video: "group-hover:animate-icon-pulse",
+  camera: "group-hover:animate-icon-shutter",
+  palette: "group-hover:animate-icon-swing",
+  code: "group-hover:animate-icon-type",
+  trending: "group-hover:animate-icon-rise",
+};
+
 export function Services() {
   return (
     <section
@@ -36,11 +50,16 @@ export function Services() {
         />
 
         <StaggerGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {services.map((service) => {
+          {services.map((service, index) => {
             const Icon = icons[service.icon];
             return (
               <StaggerItem key={service.id}>
-                <article className="card-surface hover:border-sand/40 group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-colors duration-400">
+                <article className="card-surface hover:border-sand/40 group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-all duration-400 hover:-translate-y-1.5">
+                  {/* Kartın üzerinden bir kez geçen ışık huzmesi */}
+                  <span
+                    className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent opacity-0 group-hover:animate-sheen group-hover:opacity-100"
+                    aria-hidden="true"
+                  />
                   {/* Hover'da beliren yumuşak ışık */}
                   <div
                     className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
@@ -52,8 +71,16 @@ export function Services() {
                   />
 
                   <div className="relative flex items-start justify-between">
-                    <span className="border-surface-2 bg-ink text-sand group-hover:border-sand/40 inline-flex h-12 w-12 items-center justify-center rounded-xl border transition-colors duration-400">
-                      <Icon size={20} strokeWidth={1.6} />
+                    <span
+                      className="border-surface-2 bg-ink text-sand group-hover:border-sand/50 group-hover:bg-sand/10 animate-float inline-flex h-12 w-12 items-center justify-center rounded-xl border transition-colors duration-400"
+                      /* Kartlar aynı anda süzülmesin diye her biri kaydırmalı başlar */
+                      style={{ animationDelay: `${index * 0.45}s` }}
+                    >
+                      <Icon
+                        size={20}
+                        strokeWidth={1.6}
+                        className={iconMotion[service.icon]}
+                      />
                     </span>
                     <ArrowUpRight
                       size={18}

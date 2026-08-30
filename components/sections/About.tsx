@@ -59,10 +59,12 @@ export function About() {
         <div className="border-surface-2 mt-20 grid grid-cols-2 gap-x-6 gap-y-10 border-t pt-12 lg:grid-cols-4">
           {about.stats.map((stat, i) => (
             <Reveal key={stat.label} delay={i * 0.09}>
-              <div>
-                <p className="font-display text-bone text-4xl font-semibold sm:text-5xl">
+              <div className="group">
+                <p className="font-display text-bone text-4xl font-semibold transition-colors duration-400 group-hover:text-sand sm:text-5xl">
                   <Counter value={stat.value} suffix={stat.suffix} />
                 </p>
+                {/* Sayı görünür olduğunda soldan açılan vurgu çizgisi */}
+                <span className="bg-sand/50 mt-3 block h-px w-8 origin-left transition-transform duration-500 group-hover:scale-x-[3]" />
                 <p className="text-muted-2 mt-3 text-xs tracking-[0.16em] uppercase">
                   {stat.label}
                 </p>

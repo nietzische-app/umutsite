@@ -280,15 +280,6 @@ export const projects: Project[] = [
   },
   {
     index: "07",
-    title: "Logo & Amblem Tasarımı",
-    client: "Umut Creative Studio",
-    category: "branding",
-    tags: ["Logo", "Amblem", "Monogram"],
-    result: "Dairesel rozet, yatay wordmark ve monogram olmak üzere üç versiyon",
-    media: { type: "image", src: "/showreel/post-04.jpg" },
-  },
-  {
-    index: "08",
     title: "Kurumsal Web Sitesi",
     client: "Umut Creative Studio",
     category: "web",
@@ -326,7 +317,6 @@ export const showreel: ShowreelItem[] = [
   { type: "image", src: "/showreel/post-02.jpg", label: "Hizmet Görseli", ratio: "1/1" },
   { type: "video", src: "/showreel/reel-03.mp4", poster: "/showreel/posters/reel-03.jpg", label: "Tanıtım Filmi", ratio: "9/16" },
   { type: "image", src: "/showreel/post-03.jpg", label: "Marka Kimliği", ratio: "1/1" },
-  { type: "image", src: "/showreel/post-04.jpg", label: "Logo Tasarımı", ratio: "1/1" },
 ];
 
 /* --------------------------------------------------------------------- */

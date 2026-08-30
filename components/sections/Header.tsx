@@ -78,13 +78,17 @@ export function Header() {
               <a
                 key={item.href}
                 href={item.href}
-                className={`relative rounded-full px-4 py-2 text-sm transition-colors duration-300 ${
+                className={`group/nav relative rounded-full px-4 py-2 text-sm transition-colors duration-300 ${
                   active === item.href
                     ? "text-bone"
                     : "text-bone/70 hover:text-bone"
                 }`}
               >
                 {item.label}
+                <span
+                  className="bg-sand absolute bottom-1 left-1/2 h-px w-0 -translate-x-1/2 transition-all duration-300 group-hover/nav:w-4"
+                  aria-hidden="true"
+                />
                 {active === item.href && (
                   <motion.span
                     layoutId="nav-pill"
@@ -99,8 +103,12 @@ export function Header() {
           <div className="flex items-center gap-3">
             <a
               href="#iletisim"
-              className="bg-sand text-ink hover:bg-sand-soft group hidden items-center gap-1.5 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_28px_-6px_rgba(220,197,161,0.55)] sm:inline-flex"
+              className="bg-sand text-ink hover:bg-sand-soft group relative hidden items-center gap-1.5 overflow-hidden rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_28px_-6px_rgba(220,197,161,0.55)] sm:inline-flex"
             >
+              <span
+                className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/35 opacity-0 group-hover:animate-sheen group-hover:opacity-100"
+                aria-hidden="true"
+              />
               Teklif Al
               <ArrowUpRight
                 size={15}

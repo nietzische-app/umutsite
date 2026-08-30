@@ -77,8 +77,12 @@ export function Package() {
 
                   <a
                     href={featuredPackage.cta.href}
-                    className="group bg-sand text-ink hover:bg-sand-soft mt-7 inline-flex w-full items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_32px_-8px_rgba(220,197,161,0.6)]"
+                    className="group bg-sand text-ink hover:bg-sand-soft relative mt-7 inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_32px_-8px_rgba(220,197,161,0.6)]"
                   >
+                    <span
+                      className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/35 opacity-0 group-hover:animate-sheen group-hover:opacity-100"
+                      aria-hidden="true"
+                    />
                     {featuredPackage.cta.label}
                     <ArrowUpRight
                       size={16}

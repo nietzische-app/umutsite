@@ -130,8 +130,12 @@ export function Hero() {
             >
               <a
                 href={hero.primaryCta.href}
-                className="group bg-sand text-ink hover:bg-sand-soft inline-flex items-center justify-center gap-2 rounded-full px-7 py-4 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_40px_-8px_rgba(220,197,161,0.6)]"
+                className="group bg-sand text-ink hover:bg-sand-soft relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-4 text-sm font-semibold transition-all duration-300 hover:shadow-[0_0_40px_-8px_rgba(220,197,161,0.6)]"
               >
+                <span
+                  className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 -skew-x-12 bg-white/35 opacity-0 group-hover:animate-sheen group-hover:opacity-100"
+                  aria-hidden="true"
+                />
                 {hero.primaryCta.label}
                 <ArrowUpRight
                   size={17}

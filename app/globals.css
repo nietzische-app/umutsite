@@ -37,6 +37,21 @@
   --animate-aurora-b: aurora-b 42s ease-in-out infinite alternate;
   --animate-aurora-c: aurora-c 38s ease-in-out infinite alternate;
   --animate-aurora-d: aurora-d 46s ease-in-out infinite alternate;
+
+  /* Kart ikonlarının boştaki hafif süzülmesi */
+  --animate-float: float 5s ease-in-out infinite;
+
+  /* Hizmet ikonlarına özel hover hareketleri — her ikon kendi işini anlatır */
+  --animate-icon-orbit: icon-orbit 1.4s ease-in-out infinite;
+  --animate-icon-pulse: icon-pulse 1.1s ease-in-out infinite;
+  --animate-icon-shutter: icon-shutter 1.6s ease-in-out infinite;
+  --animate-icon-swing: icon-swing 1.5s ease-in-out infinite;
+  --animate-icon-type: icon-type 1.2s ease-in-out infinite;
+  --animate-icon-rise: icon-rise 1.3s ease-in-out infinite;
+
+  /* Kartların üzerinden geçen ışık huzmesi */
+  /* forwards: huzme bitişte kartın sağ dışında kalır, kenarda takılmaz */
+  --animate-sheen: sheen 1.1s ease-out forwards;
 }
 
 @keyframes marquee {
@@ -92,6 +107,106 @@
   }
   to {
     transform: translate3d(-26vw, -14vh, 0) scale(0.92);
+  }
+}
+
+/* Boşta duran ikonların hafif süzülmesi */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* Sosyal medya: paylaşım düğümlerinin salınımı */
+@keyframes icon-orbit {
+  0%,
+  100% {
+    transform: rotate(-9deg) scale(1);
+  }
+  50% {
+    transform: rotate(9deg) scale(1.08);
+  }
+}
+
+/* İçerik üretimi: oynatma nabzı */
+@keyframes icon-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  45% {
+    transform: scale(1.18);
+  }
+}
+
+/* Fotoğraf: deklanşör kırpması */
+@keyframes icon-shutter {
+  0%,
+  62%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.84);
+    opacity: 0.55;
+  }
+  78% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+}
+
+/* Tasarım: fırça salınımı */
+@keyframes icon-swing {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-14deg);
+  }
+  75% {
+    transform: rotate(14deg);
+  }
+}
+
+/* Yazılım: imleç gibi yatay kayma */
+@keyframes icon-type {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  30% {
+    transform: translateX(-3px);
+  }
+  65% {
+    transform: translateX(3px);
+  }
+}
+
+/* Reklam: yukarı tırmanan grafik */
+@keyframes icon-rise {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(2px, -4px);
+  }
+}
+
+/* Kartın üzerinden bir kez geçen ışık huzmesi */
+@keyframes sheen {
+  from {
+    transform: translateX(-120%) skewX(-18deg);
+  }
+  to {
+    transform: translateX(320%) skewX(-18deg);
   }
 }
 

@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
 import { site } from "@/lib/content";
+import { Aurora } from "@/components/ui/Aurora";
 import "./globals.css";
 
 /* Marka kimliğindeki fontlar: başlıklarda Sora, gövdede Inter */
@@ -128,6 +129,7 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <Aurora />
         {children}
       </body>
     </html>

@@ -7,13 +7,13 @@ export function Package() {
     <section className="relative py-24 sm:py-28">
       <div className="container-x">
         <Reveal>
-          <div className="border-surface-2 bg-surface/40 relative overflow-hidden rounded-3xl border p-8 sm:p-12">
+          <div className="card-surface relative overflow-hidden rounded-3xl p-8 sm:p-12">
             {/* Dekoratif ışık */}
             <div
               className="pointer-events-none absolute -top-32 -right-20 h-80 w-80 rounded-full blur-3xl"
               style={{
                 background:
-                  "radial-gradient(circle, rgba(220,197,161,0.14) 0%, transparent 70%)",
+                  "radial-gradient(circle, rgba(220,197,161,0.20) 0%, transparent 70%)",
               }}
               aria-hidden="true"
             />
@@ -47,7 +47,7 @@ export function Package() {
 
               {/* Fiyat kartı */}
               <div className="lg:col-span-5">
-                <div className="border-surface-2 bg-ink/70 rounded-2xl border p-7">
+                <div className="glow-sand bg-ink/75 rounded-2xl p-7 backdrop-blur-sm">
                   <p className="text-muted-2 text-sm line-through">
                     {featuredPackage.priceOld}
                   </p>

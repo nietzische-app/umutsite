@@ -65,7 +65,7 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "glass border-b border-white/5 py-3 shadow-[0_10px_40px_-24px_rgba(0,0,0,0.9)]"
+            ? "header-glass py-3 shadow-[0_10px_40px_-20px_rgba(0,0,0,0.95)]"
             : "border-b border-transparent py-5"
         }`}
       >
@@ -81,14 +81,14 @@ export function Header() {
                 className={`relative rounded-full px-4 py-2 text-sm transition-colors duration-300 ${
                   active === item.href
                     ? "text-bone"
-                    : "text-muted hover:text-bone"
+                    : "text-bone/70 hover:text-bone"
                 }`}
               >
                 {item.label}
                 {active === item.href && (
                   <motion.span
                     layoutId="nav-pill"
-                    className="bg-sand/12 border-sand/25 absolute inset-0 -z-10 rounded-full border"
+                    className="bg-sand/15 border-sand/35 absolute inset-0 -z-10 rounded-full border"
                     transition={{ type: "spring", stiffness: 380, damping: 32 }}
                   />
                 )}

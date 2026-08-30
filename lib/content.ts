@@ -77,6 +77,15 @@ export const hero = {
   rotating: ["içerik üretimi", "video prodüksiyon", "sosyal medya", "marka tasarımı"],
   primaryCta: { label: "Projelerimizi İnceleyin", href: "#portfoy" },
   secondaryCta: { label: "İletişime Geçin", href: "#iletisim" },
+
+  /**
+   * Hero'nun arkasında dönen tam ekran video.
+   * Güçlü bulanıklık ve koyu katman altında, kendi çekiminizden türeyen
+   * organik bir renk akışına dönüşür. Başka bir çekimle değiştirmek için
+   * `public/showreel/` içindeki dosyalardan birinin yolunu yazın;
+   * boş bırakılırsa yalnızca CSS renk süzülmeleri (Aurora) kalır.
+   */
+  backgroundVideo: "/showreel/reel-01.mp4",
 };
 
 /* --------------------------------------------------------------------- */
@@ -95,6 +104,11 @@ export const about = {
     { title: "Uçtan Uca Üretim", desc: "Çekimden kurguya, tasarımdan yayına kadar tek elden ilerleriz." },
     { title: "Ölçülebilir Sonuç", desc: "Etkileşim, erişim ve dönüşümü raporlar, kurguyu buna göre güncelleriz." },
   ],
+  /**
+   * ⚠️ ÖRNEK DEĞERLERDİR — gerçek rakamlarla değiştirin.
+   * Doğrulanmamış iş sonuçlarını sitede yayınlamak hem güven hem de
+   * tüketiciyi yanıltıcı ticari uygulama açısından risklidir.
+   */
   stats: [
     { value: 120, suffix: "+", label: "Tamamlanan Proje" },
     { value: 45, suffix: "+", label: "Mutlu Marka" },
@@ -182,79 +196,105 @@ export type Project = {
   category: ProjectCategory;
   tags: string[];
   result: string;
-  /** public/portfolio içine görsel eklerseniz yolunu buraya yazın (ör. "/portfolio/kafe.jpg") */
-  image?: string;
+  /**
+   * Kartın kapak medyası. Video kapaklar masaüstünde fareyle üzerine
+   * gelindiğinde sessizce oynar, mobilde kart ekranın ortasına geldiğinde.
+   * `poster` videodan çıkarılmış duran karedir; video oynamadan önce ve
+   * otomatik oynatmanın engellendiği durumlarda kart asla boş kalmaz.
+   * Medya verilmezse marka paletinden türeyen soyut bir kapak kullanılır.
+   */
+  media?: { type: "image" | "video"; src: string; poster?: string };
 };
 
 /**
- * Not: Görsel eklenmemiş projeler, marka paletinden türeyen soyut bir
- * kapak görseliyle gösterilir. Gerçek fotoğrafları `public/portfolio/`
- * klasörüne atıp `image` alanını doldurmanız yeterli.
+ * Kapak medyaları `public/showreel/` ve `public/portfolio/` altındaki
+ * gerçek dosyalardır. Yeni bir proje eklerken dosyayı bu klasörlerden
+ * birine koyup `media` alanını doldurun.
  */
 export const projects: Project[] = [
   {
     index: "01",
-    title: "Kafe Mekân & Ürün Çekimi",
-    client: "Butik Kahveci",
+    title: "Mutfak & Şef Çekimi",
+    client: "Restoran / Mangal",
     category: "video",
     tags: ["Mekân çekimi", "Reels", "Renk düzenleme"],
-    result: "Menü lansmanında %62 etkileşim artışı",
+    result: "Mutfaktaki üretim sürecini markanın hikâyesine dönüştüren içerik serisi",
+    media: {
+      type: "video",
+      src: "/showreel/reel-01.mp4",
+      poster: "/showreel/posters/reel-01.jpg",
+    },
   },
   {
     index: "02",
-    title: "Berber Reels Serisi",
-    client: "Erkek Kuaförü",
+    title: "Ürün & Menü Fotoğrafçılığı",
+    client: "Burger Restoranı",
     category: "video",
-    tags: ["Kısa form video", "Senaryo", "Kurgu"],
-    result: "8 haftada 120K organik izlenme",
+    tags: ["Ürün çekimi", "Işık kurulumu", "Food styling"],
+    result: "Menüdeki her ürün için yayına hazır görsel ve kısa video seti",
+    media: {
+      type: "video",
+      src: "/showreel/reel-02.mp4",
+      poster: "/showreel/posters/reel-02.jpg",
+    },
   },
   {
     index: "03",
-    title: "Butik Koleksiyon Lansmanı",
-    client: "Hazır Giyim Markası",
-    category: "sosyal",
-    tags: ["İçerik takvimi", "Katalog çekimi", "Story kurgusu"],
-    result: "Sezon satışlarında ölçülebilir artış",
+    title: "Marka Tanıtım Filmi",
+    client: "Umut Creative Studio",
+    category: "video",
+    tags: ["Tanıtım filmi", "Kurgu", "Seslendirme"],
+    result: "Stüdyonun kendi hizmet yelpazesini anlatan tanıtım filmi",
+    media: {
+      type: "video",
+      src: "/showreel/reel-03.mp4",
+      poster: "/showreel/posters/reel-03.jpg",
+    },
   },
   {
     index: "04",
-    title: "Marka Kimliği Yenileme",
-    client: "Yerel Restoran Zinciri",
-    category: "branding",
-    tags: ["Logo", "Tipografi", "Menü tasarımı"],
-    result: "Tüm şubelerde tutarlı görsel dil",
+    title: "Kampanya Görseli & Paket Tasarımı",
+    client: "Umut Creative Studio",
+    category: "sosyal",
+    tags: ["Kampanya kurgusu", "Post tasarımı"],
+    result: "Başlangıç paketini tek görselde anlatan kampanya iletişimi",
+    media: { type: "image", src: "/showreel/post-01.jpg" },
   },
   {
     index: "05",
-    title: "Post & Story Şablon Sistemi",
-    client: "Kişisel Marka",
+    title: "Hizmet Tanıtım Görseli",
+    client: "Umut Creative Studio",
     category: "sosyal",
-    tags: ["Şablon seti", "Grafik tasarım"],
-    result: "Haftalık üretim süresinde %40 tasarruf",
+    tags: ["Post tasarımı", "İkonografi", "Yerleşim"],
+    result: "Hizmetleri tek bakışta okunur kılan görsel düzen",
+    media: { type: "image", src: "/showreel/post-02.jpg" },
   },
   {
     index: "06",
-    title: "Kurumsal Tanıtım Filmi",
-    client: "Üretim Firması",
-    category: "video",
-    tags: ["Tanıtım filmi", "Drone", "Seslendirme"],
-    result: "Fuar sunumunda ana görsel materyal",
+    title: "Marka Kimliği Kiti",
+    client: "Umut Creative Studio",
+    category: "branding",
+    tags: ["Renk paleti", "Tipografi", "Logo versiyonları"],
+    result: "Renk, tipografi ve logo kullanımını tek dokümanda toplayan kimlik seti",
+    media: { type: "image", src: "/showreel/post-03.jpg" },
   },
   {
     index: "07",
-    title: "Kurumsal Web Sitesi",
-    client: "Danışmanlık Ofisi",
-    category: "web",
-    tags: ["Next.js", "SEO", "Mobil uyum"],
-    result: "100/100 performans skoru",
+    title: "Logo & Amblem Tasarımı",
+    client: "Umut Creative Studio",
+    category: "branding",
+    tags: ["Logo", "Amblem", "Monogram"],
+    result: "Dairesel rozet, yatay wordmark ve monogram olmak üzere üç versiyon",
+    media: { type: "image", src: "/showreel/post-04.jpg" },
   },
   {
     index: "08",
-    title: "Ürün Lansman Kampanyası",
-    client: "E-ticaret Markası",
-    category: "branding",
-    tags: ["Kampanya kurgusu", "Reklam görselleri"],
-    result: "Reklam maliyetinde belirgin düşüş",
+    title: "Kurumsal Web Sitesi",
+    client: "Umut Creative Studio",
+    category: "web",
+    tags: ["Next.js", "Teknik SEO", "Mobil uyum"],
+    result: "Tamamı statik üretilen, mobil öncelikli kurumsal site",
+    media: { type: "image", src: "/portfolio/web-umutcreative.jpg" },
   },
 ];
 
@@ -273,16 +313,18 @@ export const projects: Project[] = [
 export type ShowreelItem = {
   type: "video" | "image";
   src: string;
+  /** Video için duran kare — yükleme sırasında kart boş kalmaz */
+  poster?: string;
   label: string;
   ratio: string;
 };
 
 export const showreel: ShowreelItem[] = [
-  { type: "video", src: "/showreel/reel-01.mp4", label: "Reels · Prodüksiyon", ratio: "9/16" },
+  { type: "video", src: "/showreel/reel-01.mp4", poster: "/showreel/posters/reel-01.jpg", label: "Mutfak Çekimi", ratio: "9/16" },
   { type: "image", src: "/showreel/post-01.jpg", label: "Kampanya Tasarımı", ratio: "1/1" },
-  { type: "video", src: "/showreel/reel-02.mp4", label: "Tanıtım Videosu", ratio: "9/16" },
+  { type: "video", src: "/showreel/reel-02.mp4", poster: "/showreel/posters/reel-02.jpg", label: "Ürün Fotoğrafçılığı", ratio: "9/16" },
   { type: "image", src: "/showreel/post-02.jpg", label: "Hizmet Görseli", ratio: "1/1" },
-  { type: "video", src: "/showreel/reel-03.mp4", label: "Sosyal Medya İçeriği", ratio: "9/16" },
+  { type: "video", src: "/showreel/reel-03.mp4", poster: "/showreel/posters/reel-03.jpg", label: "Tanıtım Filmi", ratio: "9/16" },
   { type: "image", src: "/showreel/post-03.jpg", label: "Marka Kimliği", ratio: "1/1" },
   { type: "image", src: "/showreel/post-04.jpg", label: "Logo Tasarımı", ratio: "1/1" },
 ];

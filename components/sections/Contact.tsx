@@ -107,7 +107,7 @@ export function Contact() {
   return (
     <section
       id="iletisim"
-      className="bg-ink-2 relative scroll-mt-24 border-t border-white/5 py-24 sm:py-32"
+      className="relative scroll-mt-24 border-t border-white/5 bg-black/25 py-24 sm:py-32 backdrop-blur-[2px]"
     >
       <div className="container-x">
         <SectionHeading
@@ -122,7 +122,7 @@ export function Contact() {
           <Reveal className="lg:col-span-7">
             <form
               onSubmit={handleSubmit}
-              className="border-surface-2 bg-surface/35 rounded-3xl border p-6 sm:p-8"
+              className="card-surface rounded-3xl p-6 sm:p-8"
               noValidate={false}
             >
               {/* Bot tuzağı */}
@@ -308,7 +308,7 @@ export function Contact() {
           {/* ---------- İletişim bilgileri + harita ---------- */}
           <Reveal delay={0.12} direction="left" className="lg:col-span-5">
             <div className="flex h-full flex-col gap-5">
-              <ul className="border-surface-2 bg-surface/35 divide-surface-2 divide-y rounded-3xl border">
+              <ul className="card-surface divide-surface-2 divide-y overflow-hidden rounded-3xl">
                 {details.map(({ icon: Icon, label, value, href }) => {
                   const content = (
                     <span className="flex items-center gap-4 px-6 py-5">
@@ -350,7 +350,7 @@ export function Contact() {
               </ul>
 
               {/* Google Maps — tıklandığında yüklenir */}
-              <div className="border-surface-2 relative min-h-64 flex-1 overflow-hidden rounded-3xl border">
+              <div className="card-surface relative min-h-64 flex-1 overflow-hidden rounded-3xl">
                 <MapEmbed />
               </div>
             </div>

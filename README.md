@@ -67,6 +67,25 @@ sunucu tarafı özellik (API route, ISR, middleware) eklenirse hem
 
 ---
 
+## Görsel dil
+
+- **Renk süzülmeleri (Aurora).** Sayfanın tamamının arkasında, `fixed` bir
+  katmanda dört adet radyal gradyan `mix-blend-screen` ile birbirine karışarak
+  yavaşça salınır ([`components/ui/Aurora.tsx`](components/ui/Aurora.tsx)).
+  Bulanıklık filtresi yerine yumuşak duraklı gradyanlar kullanılır: aynı görüntü,
+  çok daha düşük GPU maliyeti.
+- **Hero arka plan videosu.** Markanın kendi çekimi güçlü bulanıklık ve koyu
+  katman altında organik bir renk akışına dönüşür
+  ([`components/ui/HeroVideoBackdrop.tsx`](components/ui/HeroVideoBackdrop.tsx)).
+  `lib/content.ts` → `hero.backgroundVideo` ile değiştirilir; boş bırakılırsa
+  yalnızca Aurora kalır.
+- **Açık bölüm.** "Süreç" bölümü bilinçli olarak `#F2F2F2` zemindedir. Sayfa
+  boyunca süren koyu ritmi kırar; kimlik kitinde de koyu ve açık kompozisyonlar
+  birlikte kullanılıyor. Sabit başlık bu yüzden yeterince opaktır (`header-glass`),
+  altından açık bölüm geçerken de beyaz metin okunur kalır.
+
+---
+
 ## İçeriği düzenleme
 
 Sitedeki **tüm metinler tek dosyadadır**: [`lib/content.ts`](lib/content.ts).
@@ -87,6 +106,10 @@ Bileşenlere dokunmadan hizmet, proje, yorum ve iletişim bilgilerini değiştir
 
 Ayrıca:
 
+- **`about.stats`** — "120+ proje", "45+ marka", "380K erişim", "6 yıl deneyim"
+  rakamları **örnektir**. Doğrulanmamış iş sonuçlarını sitede yayınlamak hem
+  güven hem de yanıltıcı ticari uygulama açısından risklidir; gerçek
+  rakamlarla değiştirin ya da bu alanı kaldırın.
 - **`testimonials`** — örnek yorumlardır. Gerçek müşteri geri bildirimleriyle (ve izinleriyle) değiştirin.
 - **`clientLogos`** — sektör etiketleri yazılıdır; gerçek marka adlarıyla değiştirin.
 - **`projects`** — proje metinleri örnektir; gerçek iş sonuçlarınızı yazın.
@@ -118,10 +141,20 @@ Yeni içerik eklemek için dosyayı `public/showreel/` içine koyun ve
 { type: "image", src: "/showreel/post-05.jpg", label: "Etiket", ratio: "1/1"  },
 ```
 
-> **Performans notu:** mevcut videolar toplam ~6 MB (576×1024, H.264).
-> `preload="metadata"` sayesinde açılışta tamamı indirilmez, ancak bant
-> genişliğini daha da azaltmak için videoları ~1 Mbps'e sıkıştırıp
-> (`ffmpeg -crf 28`) ek olarak WebM sürümü üretmeniz önerilir.
+Her videonun `public/showreel/posters/` altında bir **duran karesi** vardır.
+Bu kare video yüklenene kadar (ve otomatik oynatmanın engellendiği
+durumlarda) gösterilir; böylece hiçbir kart boş görünmez. Yeni video
+eklerken posterini de üretin:
+
+```bash
+ffmpeg -ss 4 -i public/showreel/reel-04.mp4 -frames:v 1 -q:v 2 \
+  public/showreel/posters/reel-04.jpg
+```
+
+> **Performans:** videolar 540×960 / CRF 30 ile yeniden kodlandı ve ses
+> kanalı çıkarıldı (sitede zaten sessiz oynuyorlar). Toplam ~6 MB'tan
+> ~3,5 MB'a indi. Yeni video eklerken aynı ayarı kullanın:
+> `ffmpeg -i girdi.mp4 -an -vf scale=540:-2 -c:v libx264 -crf 30 -preset slow -movflags +faststart cikti.mp4`
 
 ---
 

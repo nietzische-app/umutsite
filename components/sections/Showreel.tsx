@@ -111,12 +111,13 @@ function MediaTrack({ clone = false }: { clone?: boolean }) {
 function MediaCard({ item }: { item: ShowreelItem }) {
   return (
     <figure
-      className="border-surface-2 bg-surface/40 group/card relative h-[clamp(15rem,34vh,24rem)] shrink-0 overflow-hidden rounded-2xl border"
+      className="card-surface group/card relative h-[clamp(15rem,34vh,24rem)] shrink-0 overflow-hidden rounded-2xl"
       style={{ aspectRatio: item.ratio }}
     >
       {item.type === "video" ? (
         <video
-          src={item.src}
+          src={`${item.src}#t=0.1`}
+          poster={item.poster}
           muted
           loop
           playsInline

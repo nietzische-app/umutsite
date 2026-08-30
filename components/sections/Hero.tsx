@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Play } from "lucide-react";
 import { hero, site } from "@/lib/content";
+import { HeroVideoBackdrop } from "@/components/ui/HeroVideoBackdrop";
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -24,24 +25,13 @@ export function Hero() {
       id="top"
       className="relative flex min-h-[100svh] items-center overflow-hidden pt-28 pb-20"
     >
-      {/* ---------- Arka plan katmanları ---------- */}
+      {/* ---------- Arka plan katmanları ----------
+           Renk süzülmeleri global <Aurora /> katmanından gelir; burada
+           yalnızca hero'ya özel ızgara ve gren var. */}
       <div className="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
-        {/* Sıcak şampanya ışık havuzu */}
-        <div
-          className="animate-drift absolute top-[-25%] left-[-10%] h-[80vh] w-[80vh] rounded-full opacity-60 blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(220,197,161,0.20) 0%, transparent 70%)",
-          }}
-        />
-        <div
-          className="animate-drift absolute right-[-15%] bottom-[-20%] h-[70vh] w-[70vh] rounded-full opacity-50 blur-[120px]"
-          style={{
-            background:
-              "radial-gradient(circle, rgba(185,159,120,0.18) 0%, transparent 70%)",
-            animationDelay: "-9s",
-          }}
-        />
+        {/* Markanın kendi çekiminden türeyen renk akışı */}
+        <HeroVideoBackdrop />
+
         {/* İnce dikey ızgara */}
         <div
           className="absolute inset-0 opacity-[0.07]"
@@ -54,7 +44,7 @@ export function Hero() {
           }}
         />
         {/* Film greni */}
-        <div className="grain-layer absolute inset-0 opacity-[0.055]" />
+        <div className="grain-layer absolute inset-0 opacity-[0.04]" />
       </div>
 
       <div className="container-x relative w-full">

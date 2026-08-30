@@ -25,7 +25,7 @@ export function Services() {
   return (
     <section
       id="hizmetler"
-      className="bg-ink-2 relative scroll-mt-24 border-y border-white/5 py-24 sm:py-32"
+      className="relative scroll-mt-24 border-y border-white/5 bg-black/25 py-24 sm:py-32 backdrop-blur-[2px]"
     >
       <div className="container-x">
         <SectionHeading
@@ -40,13 +40,13 @@ export function Services() {
             const Icon = icons[service.icon];
             return (
               <StaggerItem key={service.id}>
-                <article className="border-surface-2 bg-surface/35 hover:border-sand/35 group relative flex h-full flex-col overflow-hidden rounded-2xl border p-7 transition-colors duration-400">
+                <article className="card-surface hover:border-sand/40 group relative flex h-full flex-col overflow-hidden rounded-2xl p-7 transition-colors duration-400">
                   {/* Hover'da beliren yumuşak ışık */}
                   <div
                     className="pointer-events-none absolute -top-24 -right-24 h-56 w-56 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
                     style={{
                       background:
-                        "radial-gradient(circle, rgba(220,197,161,0.16) 0%, transparent 70%)",
+                        "radial-gradient(circle, rgba(220,197,161,0.22) 0%, transparent 70%)",
                     }}
                     aria-hidden="true"
                   />

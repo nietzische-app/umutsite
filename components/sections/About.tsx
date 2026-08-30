@@ -35,7 +35,7 @@ export function About() {
           <StaggerGroup className="space-y-4 lg:col-span-5">
             {about.pillars.map((pillar, i) => (
               <StaggerItem key={pillar.title}>
-                <div className="border-surface-2 bg-surface/40 hover:border-sand/30 hover:bg-surface/70 group rounded-2xl border p-6 transition-all duration-400">
+                <div className="card-surface hover:border-sand/40 group rounded-2xl p-6 transition-all duration-400">
                   <div className="flex items-start gap-4">
                     <span className="font-display text-sand/40 group-hover:text-sand/80 text-sm font-semibold transition-colors duration-400">
                       0{i + 1}

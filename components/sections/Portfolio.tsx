@@ -1,12 +1,11 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Play } from "lucide-react";
 import { portfolioFilters, projects, site } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { ProjectVisual } from "@/components/ui/ProjectVisual";
+import { ProjectCover } from "@/components/ui/ProjectCover";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function Portfolio() {
@@ -86,32 +85,32 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="border-surface-2 group relative overflow-hidden rounded-2xl border"
+                className="card-surface group relative overflow-hidden rounded-2xl"
               >
                 {/* Kapak */}
-                <div className="relative aspect-4/5 overflow-hidden">
-                  {project.image ? (
-                    <Image
-                      src={project.image}
-                      alt={`${project.title} — ${project.client}`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  ) : (
-                    <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-105">
-                      <ProjectVisual
-                        category={project.category}
-                        index={project.index}
-                      />
-                    </div>
-                  )}
+                <div className="bg-surface relative aspect-4/5 overflow-hidden">
+                  <ProjectCover project={project} />
 
                   {/* Okunabilirlik için alt gradyan */}
                   <div
-                    className="from-ink absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
+                    className="from-ink/95 absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
                     aria-hidden="true"
                   />
+
+                  {/* Kategori rozeti */}
+                  <span className="glass text-bone absolute top-4 left-4 rounded-full px-3 py-1 text-[0.6rem] tracking-[0.18em] uppercase">
+                    {portfolioFilters.find((f) => f.id === project.category)?.label}
+                  </span>
+
+                  {/* Video kapaklarda oynatma göstergesi */}
+                  {project.media?.type === "video" && (
+                    <span
+                      className="glass text-sand absolute top-4 right-4 inline-flex h-7 w-7 items-center justify-center rounded-full transition-opacity duration-300 group-hover:opacity-0"
+                      aria-hidden="true"
+                    >
+                      <Play size={11} className="ml-0.5 fill-current" />
+                    </span>
+                  )}
 
                   {/* Hover'da açılan detay katmanı */}
                   <div className="bg-ink/88 absolute inset-0 flex translate-y-3 flex-col justify-end p-6 opacity-0 backdrop-blur-[3px] transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
@@ -134,7 +133,7 @@ export function Portfolio() {
                 </div>
 
                 {/* Alt bilgi çubuğu */}
-                <div className="bg-surface/50 flex items-center justify-between gap-4 px-5 py-4">
+                <div className="flex items-center justify-between gap-4 px-5 py-4">
                   <div className="min-w-0">
                     <p className="text-bone truncate text-sm font-medium">
                       {project.title}

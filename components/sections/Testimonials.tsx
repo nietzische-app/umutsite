@@ -63,7 +63,7 @@ export function Testimonials() {
             aria-roledescription="carousel"
             aria-label="Müşteri yorumları"
           >
-            <div className="border-surface-2 bg-surface/40 relative min-h-[19rem] overflow-hidden rounded-3xl border p-8 sm:min-h-[16rem] sm:p-12">
+            <div className="card-surface relative min-h-[19rem] overflow-hidden rounded-3xl p-8 sm:min-h-[16rem] sm:p-12">
               <Quote className="text-sand/30 mb-6" size={30} />
 
               <AnimatePresence mode="wait" custom={dir}>

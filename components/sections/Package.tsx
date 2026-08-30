@@ -1,6 +1,25 @@
-import { ArrowUpRight, Check } from "lucide-react";
+import {
+  ArrowUpRight,
+  CalendarDays,
+  Camera,
+  Clapperboard,
+  Send,
+  Sparkles,
+  type LucideIcon,
+} from "lucide-react";
 import { featuredPackage } from "@/lib/content";
-import { Reveal } from "@/components/ui/Reveal";
+import { Reveal, StaggerGroup, StaggerItem } from "@/components/ui/Reveal";
+
+const icons: Record<
+  (typeof featuredPackage.features)[number]["icon"],
+  LucideIcon
+> = {
+  camera: Camera,
+  film: Clapperboard,
+  sparkles: Sparkles,
+  calendar: CalendarDays,
+  send: Send,
+};
 
 export function Package() {
   return (
@@ -19,6 +38,7 @@ export function Package() {
             />
 
             <div className="relative grid gap-10 lg:grid-cols-12 lg:items-center">
+              {/* --- Sol: kapsam --- */}
               <div className="lg:col-span-7">
                 <span className="eyebrow">{featuredPackage.eyebrow}</span>
                 <h2 className="mt-4 text-3xl leading-tight sm:text-4xl">
@@ -28,24 +48,26 @@ export function Package() {
                   {featuredPackage.desc}
                 </p>
 
-                <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-                  {featuredPackage.includes.map((item) => (
-                    <li
-                      key={item.label}
-                      className="border-surface-2 border-l pl-4"
-                    >
-                      <p className="font-display text-bone text-3xl font-semibold">
-                        {item.count}
-                      </p>
-                      <p className="text-muted-2 mt-1.5 text-xs leading-snug">
-                        {item.label}
-                      </p>
-                    </li>
-                  ))}
-                </ul>
+                <StaggerGroup className="mt-8 space-y-3">
+                  {featuredPackage.features.map((feature) => {
+                    const Icon = icons[feature.icon];
+                    return (
+                      <StaggerItem key={feature.label}>
+                        <div className="group flex items-center gap-4">
+                          <span className="border-surface-2 bg-ink text-sand group-hover:border-sand/50 group-hover:bg-sand/10 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border transition-colors duration-400">
+                            <Icon size={17} strokeWidth={1.6} />
+                          </span>
+                          <p className="text-bone text-sm leading-snug sm:text-base">
+                            {feature.label}
+                          </p>
+                        </div>
+                      </StaggerItem>
+                    );
+                  })}
+                </StaggerGroup>
               </div>
 
-              {/* Fiyat kartı */}
+              {/* --- Sağ: fiyat kartı --- */}
               <div className="lg:col-span-5">
                 <div className="glow-sand bg-ink/75 rounded-2xl p-7 backdrop-blur-sm">
                   <p className="text-muted-2 text-sm line-through">
@@ -55,25 +77,17 @@ export function Package() {
                     {featuredPackage.priceNew}
                   </p>
 
-                  <ul className="mt-6 space-y-2.5">
-                    {[
-                      "Marka analizi ve içerik yönü",
-                      "Revizyon hakkı dahil",
-                      "Yayına hazır dosya teslimi",
-                    ].map((line) => (
-                      <li
-                        key={line}
-                        className="text-muted flex items-start gap-2.5 text-sm"
+                  {/* Paketin iki ana kapsamı */}
+                  <div className="border-surface-2 mt-6 space-y-2 border-t pt-6">
+                    {featuredPackage.highlights.map((highlight) => (
+                      <p
+                        key={highlight}
+                        className="border-sand/30 bg-sand/[0.07] text-bone rounded-lg border px-3 py-2 text-center text-xs font-medium tracking-[0.08em] uppercase"
                       >
-                        <Check
-                          size={15}
-                          className="text-sand mt-0.5 shrink-0"
-                          strokeWidth={2.4}
-                        />
-                        {line}
-                      </li>
+                        {highlight}
+                      </p>
                     ))}
-                  </ul>
+                  </div>
 
                   <a
                     href={featuredPackage.cta.href}

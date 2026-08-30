@@ -347,18 +347,30 @@ export const processSteps = [
 /* --------------------------------------------------------------------- */
 /*  PAKET / KAMPANYA                                                      */
 /* --------------------------------------------------------------------- */
+/**
+ * Kampanya paketi — içeriği marka sahibinin bastırdığı broşürden alınmıştır.
+ * Fiyat veya kapsam değişirse yalnızca burası güncellenir.
+ */
 export const featuredPackage = {
-  eyebrow: "Başlangıç Paketi",
+  eyebrow: "Sınırlı Süre İçin",
   title: "Markanızı Birlikte Büyütelim",
-  desc: "Dijitale hızlı ve güçlü bir giriş yapmak isteyen markalar için hazırlanmış tanıtım paketi.",
-  includes: [
-    { count: "10", label: "Instagram post tasarımı" },
-    { count: "1", label: "Yapay zekâ videosu" },
-    { count: "1", label: "Tanıtım / reklam videosu" },
-  ],
-  priceOld: "25.000 TL",
-  priceNew: "10.000 TL",
-  note: "Fiyatlar KDV hariçtir ve kampanya süresiyle sınırlıdır.",
+  desc: "Profesyonel çekim, yaratıcı içerik ve stratejik planlama ile markanızı daha görünür hale getiriyoruz.",
+
+  /** Paketin iki ana kapsamı — fiyat kartının üstünde rozet olarak çıkar */
+  highlights: ["1 Çekim Günü", "1 Aylık İçerik Planlaması"],
+
+  /** Pakete dahil olanlar */
+  features: [
+    { icon: "camera", label: "Profesyonel Fotoğraf & Video Çekimi" },
+    { icon: "film", label: "Kurgu & Edit Çalışmaları" },
+    { icon: "sparkles", label: "Yapay Zekâ Destekli İçerikler" },
+    { icon: "calendar", label: "1 Aylık İçerik Planlaması" },
+    { icon: "send", label: "Sosyal Medya İçerikleri · Reels, Hikâye, Gönderi" },
+  ] as { icon: "camera" | "film" | "sparkles" | "calendar" | "send"; label: string }[],
+
+  priceOld: "15.000 TL",
+  priceNew: "7.000 TL",
+  note: "Kampanya süresiyle sınırlıdır.",
   cta: { label: "Paketi Talep Et", href: "#iletisim" },
 };
 

@@ -104,14 +104,13 @@ export const about = {
     { title: "Uçtan Uca Üretim", desc: "Çekimden kurguya, tasarımdan yayına kadar tek elden ilerleriz." },
     { title: "Ölçülebilir Sonuç", desc: "Etkileşim, erişim ve dönüşümü raporlar, kurguyu buna göre güncelleriz." },
   ],
-  /**
-   * ⚠️ ÖRNEK DEĞERLERDİR — gerçek rakamlarla değiştirin.
-   * Doğrulanmamış iş sonuçlarını sitede yayınlamak hem güven hem de
-   * tüketiciyi yanıltıcı ticari uygulama açısından risklidir.
-   */
   stats: [
-    { value: 120, suffix: "+", label: "Tamamlanan Proje" },
-    { value: 45, suffix: "+", label: "Mutlu Marka" },
+    // Proje ve marka sayıları marka sahibi tarafından teyit edildi.
+    { value: 60, suffix: "+", label: "Tamamlanan Proje" },
+    { value: 22, suffix: "+", label: "Mutlu Marka" },
+    // ⚠️ Aşağıdaki iki değer hâlâ örnektir — gerçek rakamlarla değiştirin
+    //    ya da bu satırları silin. Doğrulanmamış iş sonucu yayınlamak
+    //    hem güven hem de yanıltıcı ticari uygulama açısından risklidir.
     { value: 380, suffix: "K", label: "Üretilen İçerik Erişimi" },
     { value: 6, suffix: " Yıl", label: "Sektör Deneyimi" },
   ],

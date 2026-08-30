@@ -113,10 +113,10 @@ Bileşenlere dokunmadan hizmet, proje, yorum ve iletişim bilgilerini değiştir
 
 Ayrıca:
 
-- **`about.stats`** — "120+ proje", "45+ marka", "380K erişim", "6 yıl deneyim"
-  rakamları **örnektir**. Doğrulanmamış iş sonuçlarını sitede yayınlamak hem
-  güven hem de yanıltıcı ticari uygulama açısından risklidir; gerçek
-  rakamlarla değiştirin ya da bu alanı kaldırın.
+- **`about.stats`** — "60+ proje" ve "22+ marka" marka sahibi tarafından
+  teyit edildi. **"380K erişim" ve "6 yıl deneyim" hâlâ örnektir**; gerçek
+  rakamlarla değiştirin ya da o iki satırı silin. Doğrulanmamış iş sonucu
+  yayınlamak hem güven hem de yanıltıcı ticari uygulama açısından risklidir.
 - **`testimonials`** — örnek yorumlardır. Gerçek müşteri geri bildirimleriyle (ve izinleriyle) değiştirin.
 - **`clientLogos`** — sektör etiketleri yazılıdır; gerçek marka adlarıyla değiştirin.
 - **`projects`** — proje metinleri örnektir; gerçek iş sonuçlarınızı yazın.

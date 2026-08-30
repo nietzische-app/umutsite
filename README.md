@@ -37,9 +37,30 @@ npm run serve:out # out/ klasörünü lokalde test eder
 
 `out/` klasörünü olduğu gibi yükleyebileceğiniz yerler:
 
-- **Vercel / Netlify** — repoyu bağlayın, ayar gerekmez
+- **Vercel** — repoyu bağlayın; build ayarları `vercel.json` ile sabitlenmiştir
+  (aşağıya bakın)
+- **Netlify** — build komutu `npm run build`, publish dizini `out`
 - **GitHub Pages** — `out/` klasörünü `gh-pages` dalına gönderin
 - **cPanel / FTP** — `out/` içindekileri `public_html`'e kopyalayın
+
+### Vercel notu
+
+Proje kökündeki [`vercel.json`](vercel.json) build ayarlarını depoya sabitler:
+
+```json
+{ "framework": null, "buildCommand": "npm run build", "outputDirectory": "out" }
+```
+
+Bu dosya **Vercel panelindeki proje ayarlarını geçersiz kılar**. Repo ilk kez
+Vercel'e bağlandığında içinde henüz uygulama yoksa, Vercel "Framework: Other"
+ve boş bir çıktı dizini kaydeder; sonradan uygulama eklense bile bu ayar
+kendiliğinden düzelmez ve site kökü `404: NOT_FOUND` döner. `vercel.json`
+tam olarak bu durumu önler.
+
+Site tamamen statik export olduğu için `framework` bilerek `null` bırakılmıştır;
+sunucu tarafı özellik (API route, ISR, middleware) eklenirse hem
+`next.config.ts` içindeki `output: "export"` hem de buradaki
+`framework` / `outputDirectory` satırları kaldırılmalıdır.
 
 > Sunucu tarafı bir özellik (API route, ISR) eklerseniz `next.config.ts` içindeki
 > `output: "export"` satırını kaldırın.

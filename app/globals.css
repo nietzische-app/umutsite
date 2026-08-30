@@ -1,0 +1,197 @@
+@import "tailwindcss";
+
+/* =====================================================================
+   UMUT CREATIVE — Tasarım Sistemi (Design Tokens)
+   Kaynak: markanın resmî kimlik kiti (brand-assets/)
+   ===================================================================== */
+@theme {
+  /* --- Renk Paleti --- */
+  --color-ink: #0d0d0d; /* Ana zemin — kimlik kitindeki #0D0D0D */
+  --color-ink-2: #121212; /* Bölüm zemini (alternatif) */
+  --color-surface: #1c1c1c; /* Kart / panel yüzeyi */
+  --color-surface-2: #2e2e2e; /* Kenarlık, ayırıcı, hover yüzeyi */
+  --color-bone: #f2f2f2; /* Açık zemin & birincil metin */
+  --color-sand: #dcc5a1; /* Vurgu — şampanya / altın */
+  --color-sand-soft: #e8d8bd; /* Vurgunun açık tonu */
+  --color-sand-deep: #b99f78; /* Vurgunun koyu tonu */
+  --color-muted: #9a9a9a; /* İkincil metin */
+  --color-muted-2: #6b6b6b; /* Üçüncül metin / etiket */
+
+  /* --- Tipografi --- */
+  --font-display: var(--font-sora), "Sora", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  /* --- Hareket --- */
+  --ease-brand: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* --- Animasyonlar --- */
+  --animate-marquee: marquee 42s linear infinite;
+  --animate-drift: drift 18s ease-in-out infinite alternate;
+}
+
+@keyframes marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  to {
+    transform: translate3d(3%, -4%, 0) scale(1.12);
+  }
+}
+
+/* =====================================================================
+   Temel katman
+   ===================================================================== */
+@layer base {
+  * {
+    border-color: color-mix(in oklab, var(--color-surface-2) 70%, transparent);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Sticky header'ın başlıkları kesmemesi için */
+    scroll-padding-top: 5.5rem;
+    -webkit-text-size-adjust: 100%;
+    /* Giriş animasyonlarındaki yatay kaymanın scrollbar üretmesini önler */
+    overflow-x: hidden;
+  }
+
+  body {
+    background-color: var(--color-ink);
+    color: var(--color-bone);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--color-sand);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-sand);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  /* Koyu tema ile uyumlu ince kaydırma çubuğu */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-ink);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-2);
+    border-radius: 99px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--color-sand-deep);
+  }
+
+  /* Hareket hassasiyeti olan kullanıcılar için */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* =====================================================================
+   Yardımcı sınıflar
+   ===================================================================== */
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 80rem;
+  padding-inline: 1.25rem;
+  @media (width >= 640px) {
+    padding-inline: 2rem;
+  }
+  @media (width >= 1024px) {
+    padding-inline: 2.5rem;
+  }
+}
+
+/* Marka üst-etiketi: "HİZMETLERİMİZ" gibi geniş harf aralıklı küçük başlıklar */
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--color-sand);
+}
+
+/* Cam efekti (glassmorphism) */
+@utility glass {
+  background: color-mix(in oklab, var(--color-ink) 62%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--color-bone) 8%, transparent);
+}
+
+/* Kimlik kitindeki "beyaz + şampanya" iki renkli başlık vurgusu */
+@utility text-accent {
+  color: var(--color-sand);
+}
+
+/* İnce film grenli doku — fotoğrafik marka diline referans */
+@utility grain {
+  position: relative;
+}
+@utility grain-layer {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* Marquee'nin kenarlarını yumuşatan maske */
+@utility edge-fade {
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 8%,
+    #000 92%,
+    transparent
+  );
+}

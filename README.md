@@ -55,13 +55,14 @@ Bileşenlere dokunmadan hizmet, proje, yorum ve iletişim bilgilerini değiştir
 
 `lib/content.ts` → `site` nesnesi:
 
-| Alan | Şu anki değer | Yapılacak |
-| --- | --- | --- |
-| `url` | `https://umutcreative.com` | Gerçek alan adı (SEO/canonical için kritik) |
-| `email` | `merhaba@umutcreative.com` | Gerçek e-posta |
-| `phoneDisplay` / `phoneRaw` | örnek numara | Gerçek numara (`phoneRaw` boşluksuz, `+90...`) |
-| `address` / `mapsQuery` | Kadıköy, İstanbul | Gerçek adres |
-| `socials` | Instagram dışı linkler boş şablon | Gerçek profil linkleri |
+| Alan | Durum |
+| --- | --- |
+| `email` — `umutcreativestudio@gmail.com` | ✅ gerçek |
+| `phoneDisplay` / `phoneRaw` — `+90 537 431 49 91` | ✅ gerçek |
+| `socials.instagram` — `instagram.com/umutcreativestudio` | ✅ gerçek |
+| `url` — `https://umutcreativestudio.com` | ⚠️ **alan adınızla değiştirin** (canonical + sitemap için kritik) |
+| `address` / `mapsQuery` — Kadıköy, İstanbul | ⚠️ gerçek adresle değiştirin |
+| `socials.youtube` / `linkedin` / `behance` | ⚠️ boş şablon linkler |
 
 Ayrıca:
 
@@ -77,6 +78,29 @@ Gerçek fotoğrafları eklemek için:
 
 1. Görselleri `public/portfolio/` klasörüne koyun (önerilen oran **4:5**, ör. 1200×1500).
 2. `lib/content.ts` içindeki ilgili projeye `image: "/portfolio/dosya-adi.jpg"` satırını ekleyin.
+
+### Vitrin şeridi (akan medya)
+
+Ana sayfadaki **Vitrin** bölümü, `public/showreel/` klasöründeki gerçek video ve
+görselleri dikişsiz akan bir şeritte gösterir.
+
+- Videolar **sessizdir** (`muted`), döngüseldir ve **yalnızca şerit ekranda
+  görünürken** oynar; bölümden çıkınca veya sekme arka plana alınınca durur.
+- Şeridin üzerine gelindiğinde akış durur.
+- `prefers-reduced-motion` açıksa hem akış hem otomatik oynatma devre dışı kalır.
+
+Yeni içerik eklemek için dosyayı `public/showreel/` içine koyun ve
+`lib/content.ts` → `showreel` dizisine bir satır ekleyin:
+
+```ts
+{ type: "video", src: "/showreel/reel-04.mp4", label: "Etiket", ratio: "9/16" },
+{ type: "image", src: "/showreel/post-05.jpg", label: "Etiket", ratio: "1/1"  },
+```
+
+> **Performans notu:** mevcut videolar toplam ~6 MB (576×1024, H.264).
+> `preload="metadata"` sayesinde açılışta tamamı indirilmez, ancak bant
+> genişliğini daha da azaltmak için videoları ~1 Mbps'e sıkıştırıp
+> (`ffmpeg -crf 28`) ek olarak WebM sürümü üretmeniz önerilir.
 
 ---
 
@@ -106,13 +130,15 @@ app/
   not-found.tsx     # 404
 
 components/
-  sections/         # Header, Hero, About, Services, Portfolio, Process,
-                    # Package, Testimonials, Contact, Footer, WhatsAppButton
+  sections/         # Header, Hero, About, Services, Portfolio, Showreel,
+                    # Process, Package, Testimonials, Contact, Footer,
+                    # WhatsAppButton
   ui/               # Reveal, Counter, Marquee, SectionHeading,
                     # ProjectVisual, MapEmbed, Logo
 
 lib/content.ts      # ⭐ tüm site içeriği
 public/brand/       # logo (PNG) + favicon
+public/showreel/    # vitrin şeridindeki videolar ve görseller
 brand-assets/       # orijinal kurumsal kimlik görselleri (referans)
 ```
 
@@ -123,4 +149,5 @@ brand-assets/       # orijinal kurumsal kimlik görselleri (referans)
 - Tüm animasyonlar `prefers-reduced-motion` ayarına saygı duyar.
 - Klavye ile gezinti için "İçeriğe geç" bağlantısı ve görünür odak halkaları vardır.
 - Google Maps yalnızca kullanıcı tıkladığında yüklenir (performans + KVKK).
+- Vitrin videoları sessizdir ve ekran dışındayken durdurulur.
 - Fontlar `next/font` ile self-host edilir; harici font isteği yapılmaz.

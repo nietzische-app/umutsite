@@ -98,7 +98,7 @@ export function Contact() {
     {
       icon: Instagram,
       label: "Instagram",
-      value: "@umut.creative",
+      value: site.instagramHandle,
       href: site.socials.instagram,
     },
     { icon: Clock, label: "Çalışma Saatleri", value: site.hours },

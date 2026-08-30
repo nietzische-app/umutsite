@@ -207,7 +207,7 @@ export function Hero() {
                 rel="noopener noreferrer"
                 className="text-muted hover:text-sand mt-6 block text-center text-xs tracking-[0.2em] transition-colors"
               >
-                @umut.creative
+                {site.instagramHandle}
               </a>
             </div>
           </motion.div>

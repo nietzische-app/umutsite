@@ -172,7 +172,7 @@ export function Header() {
                 transition={{ delay: 0.58 }}
                 className="text-muted hover:text-sand mt-6 text-center text-sm tracking-widest uppercase transition-colors"
               >
-                @umut.creative
+                {site.instagramHandle}
               </motion.a>
             </nav>
           </motion.div>

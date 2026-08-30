@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
-import { portfolioFilters, projects } from "@/lib/content";
+import { portfolioFilters, projects, site } from "@/lib/content";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { ProjectVisual } from "@/components/ui/ProjectVisual";
 import { Reveal } from "@/components/ui/Reveal";
@@ -156,7 +156,7 @@ export function Portfolio() {
           <p className="text-muted-2 mt-12 text-center text-sm">
             Daha fazlası için{" "}
             <a
-              href="https://instagram.com/umut.creative"
+              href={site.socials.instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="text-sand underline underline-offset-4 hover:no-underline"

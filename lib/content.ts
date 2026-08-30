@@ -5,8 +5,8 @@
  *  Sitedeki tüm metinler, hizmetler, projeler ve iletişim bilgileri
  *  bu dosyadan yönetilir. Bileşenlere dokunmadan içerik güncelleyebilirsiniz.
  *
- *  ⚠️  YAYINA ALMADAN ÖNCE: `site` nesnesindeki telefon, e-posta, adres ve
- *      form endpoint alanları örnek değerlerdir — gerçek bilgilerle değiştirin.
+ *  ⚠️  YAYINA ALMADAN ÖNCE: `site.url` (alan adı), `site.address` ve
+ *      `site.socials` içindeki Instagram dışı linkler hâlâ örnek değerlerdir.
  * =====================================================================
  */
 
@@ -18,11 +18,11 @@ export const site = {
   description:
     "Umut Creative Studio; markalar için sosyal medya yönetimi, içerik üretimi, video prodüksiyon ve tasarım hizmetleri sunan İstanbul merkezli yaratıcı stüdyodur.",
 
-  // ⚠️ Gerçek bilgilerle değiştirin
-  url: "https://umutcreative.com",
-  email: "merhaba@umutcreative.com",
-  phoneDisplay: "+90 (5xx) xxx xx xx",
-  phoneRaw: "+905xxxxxxxxx", // tel: ve WhatsApp linkleri için, boşluksuz
+  // ⚠️ `url` alanını gerçek alan adıyla değiştirin (canonical + sitemap için)
+  url: "https://umutcreativestudio.com",
+  email: "umutcreativestudio@gmail.com",
+  phoneDisplay: "+90 537 431 49 91",
+  phoneRaw: "+905374314991", // tel: ve WhatsApp linkleri için, boşluksuz
   address: {
     district: "Kadıköy",
     city: "İstanbul",
@@ -31,8 +31,10 @@ export const site = {
   },
   hours: "Pazartesi – Cumartesi · 09:00 – 19:00",
 
+  instagramHandle: "@umutcreativestudio",
+
   socials: {
-    instagram: "https://instagram.com/umut.creative",
+    instagram: "https://www.instagram.com/umutcreativestudio/",
     behance: "https://behance.net/",
     youtube: "https://youtube.com/",
     linkedin: "https://linkedin.com/",
@@ -254,6 +256,35 @@ export const projects: Project[] = [
     tags: ["Kampanya kurgusu", "Reklam görselleri"],
     result: "Reklam maliyetinde belirgin düşüş",
   },
+];
+
+/* --------------------------------------------------------------------- */
+/*  VİTRİN (Akan medya şeridi)                                            */
+/* --------------------------------------------------------------------- */
+
+/**
+ * Ana sayfadaki akan şeritte gösterilen gerçek işler.
+ * Videolar **sessiz** oynar ve yalnızca şerit ekranda görünürken çalışır.
+ *
+ * Yeni içerik eklemek için: dosyayı `public/showreel/` klasörüne koyun ve
+ * aşağıya bir satır ekleyin. `ratio` kartın en-boy oranıdır
+ * (dikey Reels için "9/16", kare gönderi için "1/1").
+ */
+export type ShowreelItem = {
+  type: "video" | "image";
+  src: string;
+  label: string;
+  ratio: string;
+};
+
+export const showreel: ShowreelItem[] = [
+  { type: "video", src: "/showreel/reel-01.mp4", label: "Reels · Prodüksiyon", ratio: "9/16" },
+  { type: "image", src: "/showreel/post-01.jpg", label: "Kampanya Tasarımı", ratio: "1/1" },
+  { type: "video", src: "/showreel/reel-02.mp4", label: "Tanıtım Videosu", ratio: "9/16" },
+  { type: "image", src: "/showreel/post-02.jpg", label: "Hizmet Görseli", ratio: "1/1" },
+  { type: "video", src: "/showreel/reel-03.mp4", label: "Sosyal Medya İçeriği", ratio: "9/16" },
+  { type: "image", src: "/showreel/post-03.jpg", label: "Marka Kimliği", ratio: "1/1" },
+  { type: "image", src: "/showreel/post-04.jpg", label: "Logo Tasarımı", ratio: "1/1" },
 ];
 
 /* --------------------------------------------------------------------- */

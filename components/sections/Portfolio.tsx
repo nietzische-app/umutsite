@@ -85,57 +85,55 @@ export function Portfolio() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.94 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="card-surface group relative overflow-hidden rounded-2xl transition-transform duration-500 hover:-translate-y-1.5"
+                className="card-surface group relative flex h-full flex-col overflow-hidden rounded-2xl transition-transform duration-500 hover:-translate-y-1.5"
               >
-                {/* Kapak */}
+                {/* Kapak — üzerine hiçbir karartma katmanı gelmez, görsel
+                    ve video her zaman tam parlaklığında kalır. */}
                 <div className="bg-surface relative aspect-4/5 overflow-hidden">
                   <ProjectCover project={project} />
 
-                  {/* Okunabilirlik için alt gradyan */}
-                  <div
-                    className="from-ink/95 pointer-events-none absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
-                    aria-hidden="true"
-                  />
-
-                  {/* Kategori rozeti */}
+                  {/* Kategori rozeti — kendi cam zemini olduğu için
+                      arkasında gradyana ihtiyaç duymaz */}
                   <span className="glass text-bone pointer-events-none absolute top-4 left-4 z-10 rounded-full px-3 py-1 text-[0.6rem] tracking-[0.18em] uppercase">
                     {portfolioFilters.find((f) => f.id === project.category)?.label}
                   </span>
-
-
-                  {/* Hover'da açılan detay katmanı */}
-                  <div className="bg-ink/80 pointer-events-none absolute inset-0 flex translate-y-3 flex-col justify-end p-6 opacity-0 backdrop-blur-[2px] transition-all duration-500 group-hover:translate-y-0 group-hover:opacity-100">
-                    <p className="eyebrow">{project.client}</p>
-                    <h3 className="font-display text-bone mt-2 text-lg leading-snug font-semibold">
-                      {project.title}
-                    </h3>
-                    <p className="text-sand mt-3 text-sm">{project.result}</p>
-                    <div className="mt-4 flex flex-wrap gap-1.5">
-                      {project.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="border-surface-2 text-muted rounded-full border px-2.5 py-1 text-[0.65rem]"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
                 </div>
 
-                {/* Alt bilgi çubuğu */}
-                <div className="flex items-center justify-between gap-4 px-5 py-4">
-                  <div className="min-w-0">
-                    <p className="text-bone truncate text-sm font-medium">
-                      {project.title}
-                    </p>
-                    <p className="text-muted-2 mt-0.5 truncate text-xs">
-                      {project.client}
-                    </p>
+                {/* Alt bilgi çubuğu — proje detayları görselin üzerinde değil,
+                    altında açılır. Hover'da yükseklik 0fr'den 1fr'ye geçer. */}
+                <div className="px-5 py-4">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="min-w-0">
+                      <p className="text-bone truncate text-sm font-medium">
+                        {project.title}
+                      </p>
+                      <p className="text-muted-2 mt-0.5 truncate text-xs">
+                        {project.client}
+                      </p>
+                    </div>
+                    <span className="text-muted-2 group-hover:text-sand shrink-0 transition-colors duration-300">
+                      <ArrowUpRight size={17} />
+                    </span>
                   </div>
-                  <span className="text-muted-2 group-hover:text-sand shrink-0 transition-colors duration-300">
-                    <ArrowUpRight size={17} />
-                  </span>
+
+                  {/* Detaylar kalıcı olarak görünür.
+                      Hover'da açılan bir panel iki sorun çıkarıyordu: kartı
+                      büyütüp ızgaradaki diğer kartları aşağı itiyor, ve
+                      dokunmatik cihazlarda hover olmadığı için hiç
+                      görünmüyordu. */}
+                  <p className="text-sand mt-3 text-sm leading-snug">
+                    {project.result}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-1.5">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="border-surface-2 text-muted rounded-full border px-2.5 py-1 text-[0.65rem]"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </motion.article>
             ))}
